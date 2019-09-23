@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>423030984051-ddkbnugrnhck0t33d47g117t4conef4u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.423030984051-ddkbnugrnhck0t33d47g117t4conef4u</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>423030984051-qs6rjc9c6k7vqi69tq8epds4fs4pmbap.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDqAzSrAu8ClcuMGN-AI2z6HCbsfXSyaOk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>423030984051</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.esep</string>
+	<key>PROJECT_ID</key>
+	<string>esep-sweet</string>
+	<key>STORAGE_BUCKET</key>
+	<string>esep-sweet.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:423030984051:ios:01b14aea1c3fd275</string>
+	<key>DATABASE_URL</key>
+	<string>https://esep-sweet.firebaseio.com</string>
+</dict>
+</plist>
