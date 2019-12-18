@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
  Widget _webLauncher() {
     return SafeArea(
           child:  new WebviewScaffold(
-              url: "https://esep.app/home/home-1/",
+              url: "https://esep.app/",
               ),
         );
   }
