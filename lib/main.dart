@@ -16,11 +16,183 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: true,
         //color: Colors.amber[600],
-        home: SRA()
+//        home: SRA()
+        home: NewHomePage()
     );
   }
 }
 final color = const Color(0xff3363ac);
+
+
+class NewHomePage extends StatelessWidget {
+  double _lateralPadding = 15;
+  double _baseSpaceBetweenCards = 15;
+  double _spaceBetweenCards = 15;
+  double _svgSideSize = 35;
+
+  Size calculateCardSize(BuildContext context) {
+    Size mq = MediaQuery.of(context).size;
+    //todo: capire cosa sono i -10
+    double availableWidth = mq.width - (_lateralPadding * 2) - _spaceBetweenCards - 10;
+    double iconSize = availableWidth / 2;
+    return Size(iconSize, iconSize);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Size cardSize = calculateCardSize(context);
+
+    return Scaffold(
+      body: ListView(
+        children: <Widget>[
+          Image.asset('assets/ss_loading.png', width: MediaQuery.of(context).size.width / 3, height: MediaQuery.of(context).size.width / 2,),
+          SizedBox(height: 25),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: _lateralPadding, vertical: 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Card(
+                  elevation: 8.0,
+                  child: InkWell(
+                    splashColor: Color.fromARGB(255, 159, 174, 229),
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Informazioni"),
+                              content: Text("ESEP.APP è la Web App dell’Ente Scuola Edile Province Nord Sardegna che ha come obiettivo promuovere i progetti dell’ente e incentivare lo scambio tra imprese e corsisti"),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text("Chiudi"),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                )
+                              ],
+                            );
+                          }
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      ),
+                      width: cardSize.width,
+                      height: cardSize.height,
+                        child: Center(
+                            child: Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Icon(Icons.info_outline, size: 48),
+                                    Text("Info", style: TextStyle(fontSize: 11), textAlign: TextAlign.center)
+                                  ],
+                                )
+                            )
+                        )
+                    )
+                  )
+                ),
+                Card(
+                    elevation: 8.0,
+                    child: InkWell(
+                        splashColor: Color.fromARGB(255, 159, 174, 229),
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SRA())),
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                            ),
+                            width: cardSize.width,
+                            height: cardSize.height,
+                            child: Center(
+                                child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Icon(Icons.play_arrow, size: 48),
+                                        Text("Accedi", style: TextStyle(fontSize: 11), textAlign: TextAlign.center)
+                                      ],
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+              ],
+            )
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: _lateralPadding, vertical: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Card(
+                      elevation: 8.0,
+                      child: InkWell(
+                          splashColor: Color.fromARGB(255, 159, 174, 229),
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Contatti"),
+                                    content: Text("Z. I. Predda Niedda strada 34,\n 07100 Sassari\n\nCONTATTI\nTel +39 079 261043\nsegreteria@esepnordsardegna.it\nesepnordsardegna@pec.it CCIAA SS n° 136141\nC.F. 92013630907\nP.IVA 01693320903"),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text("Chiudi"),
+                                        onPressed: () => Navigator.of(context).pop(),
+                                      )
+                                    ],
+                                  );
+                                }
+                            );
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                              ),
+                              width: cardSize.width,
+                              height: cardSize.height,
+                              child: Center(
+                                  child: Padding(
+                                      padding: EdgeInsets.all(5),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Icon(Icons.contacts, size: 48),
+                                          Text("Contatti", style: TextStyle(fontSize: 11), textAlign: TextAlign.center)
+                                        ],
+                                      )
+                                  )
+                              )
+                          )
+                      )
+                  ),
+                ],
+              )
+          )
+        ],
+      )
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 class SRA extends StatefulWidget {
   @override
   _SRAState createState() => _SRAState();
