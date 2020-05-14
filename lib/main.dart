@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:esep/contact.dart';
+import 'package:esep/info.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:progress_indicators/progress_indicators.dart';
@@ -57,23 +59,7 @@ class NewHomePage extends StatelessWidget {
                   elevation: 8.0,
                   child: InkWell(
                     splashColor: Color.fromARGB(255, 159, 174, 229),
-                    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("Informazioni"),
-                              content: Text("ESEP.APP è la Web App dell’Ente Scuola Edile Province Nord Sardegna che ha come obiettivo promuovere i progetti dell’ente e incentivare lo scambio tra imprese e corsisti"),
-                              actions: <Widget>[
-                                FlatButton(
-                                  child: Text("Chiudi"),
-                                  onPressed: () => Navigator.of(context).pop(),
-                                )
-                              ],
-                            );
-                          }
-                      );
-                    },
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => InfoPage())),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -134,23 +120,7 @@ class NewHomePage extends StatelessWidget {
                       elevation: 8.0,
                       child: InkWell(
                           splashColor: Color.fromARGB(255, 159, 174, 229),
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text("Contatti"),
-                                    content: Text("Z. I. Predda Niedda strada 34,\n 07100 Sassari\n\nCONTATTI\nTel +39 079 261043\nsegreteria@esepnordsardegna.it\nesepnordsardegna@pec.it CCIAA SS n° 136141\nC.F. 92013630907\nP.IVA 01693320903"),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text("Chiudi"),
-                                        onPressed: () => Navigator.of(context).pop(),
-                                      )
-                                    ],
-                                  );
-                                }
-                            );
-                          },
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ContactPage())),
                           child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -292,16 +262,19 @@ class _HomePageState extends State<HomePage> {
     return result;
   }
  Widget _webLauncher() {
-    return SafeArea(
-          child:  new WebviewScaffold(
-              url: "https://esep.app/",
-              ),
-        );
+    return WebviewScaffold(
+            url: "https://esep.app/",
+          );
   }
   
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        appBar: AppBar(
+          leading: BackButton(),
+          centerTitle: true,
+          title: Text("Esep App")
+        ),
         body: new FutureBuilder(
           future: getData(),
           builder: (context, snapshot) {
@@ -322,6 +295,34 @@ class _HomePageState extends State<HomePage> {
               );
             }
           },
-        ));
+        ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info_outline),
+            title: Text('Info'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.contacts),
+            title: Text('Contatti'),
+          ),
+        ],
+        currentIndex: 0,
+        selectedItemColor: Colors.amber[800],
+        onTap: (int index) {
+          if(index == 0) return null;
+          if(index == 1) {
+            return Navigator.pushReplacement(context, MaterialPageRoute(maintainState: false, builder: (context) => InfoPage()));
+          }
+          if(index == 2) {
+            return Navigator.pushReplacement(context, MaterialPageRoute(maintainState: false, builder: (context) => ContactPage()));
+          }
+        },
+      ),
+    );
   }
 }
